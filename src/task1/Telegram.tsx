@@ -23,7 +23,6 @@ function Telegram(props: ITelegram) {
                 <hr/>
                 {props.arQualities.map(m => <div key={m.id} className={style.myQualities1}>My
                     qualities:+ {m.qualities}</div>)}
-
             </div>
         </div>
 
