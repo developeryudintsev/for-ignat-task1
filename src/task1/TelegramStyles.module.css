@@ -4,7 +4,6 @@
     height: 98vw;
 }
 
-
 .telega{
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     padding: 5px;
@@ -14,5 +13,9 @@
     top: 100px;
     background-color: white;
     width:20vw;
-    height: 10vw;
+    height: 13vw;
+}
+
+.myQualities1 {
+    color: red;
 }
