@@ -16,6 +16,12 @@
     height: 13vw;
 }
 
-.myQualities1 {
+.class1 {
+    width:20vw;
+    word-wrap: break-word;
     color: red;
+}
+
+.class2 {
+    color: black;
 }

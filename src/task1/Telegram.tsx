@@ -21,12 +21,11 @@ function Telegram(props: ITelegram) {
                 <div>{props.name}</div>
                 <div>{props.surName}</div>
                 <hr/>
-                {props.arQualities.map(m => <div key={m.id} className={style.myQualities1}>My
+                {props.arQualities.map(m => <div key={m.id} className={m.id === 2 ? style.class1 : style.class2}>My
                     qualities:+ {m.qualities}</div>)}
             </div>
         </div>
 
     )
 }
-// <div className={styles.tile + ' ' + this.props.color}>
 export default Telegram
