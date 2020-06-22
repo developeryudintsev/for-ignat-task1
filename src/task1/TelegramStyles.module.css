@@ -12,16 +12,25 @@
     left: 500px;
     top: 100px;
     background-color: white;
-    width:20vw;
-    height: 13vw;
+    width:400px;
+    height: 400px;
 }
 
 .class1 {
-    width:20vw;
-    word-wrap: break-word;
+    /*width:20vw;*/
+    /*word-wrap: break-word;*/
     color: red;
 }
 
 .class2 {
     color: black;
+}
+
+table{
+    margin-left: 50px;
+    width: 300px;
+}
+table td {
+    width: 100px;
+
 }
