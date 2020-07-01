@@ -1,23 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './TelegramStyles.module.css';
+import {log} from "util";
+import {v1} from "uuid";
 
 
 type ITelegram = {
     name: string,
     surName: string,
     arQualities: Array<InArray>
-    Delete:(id:number)=>void;
-    changeFilter:(value:string)=>void;
+    Delete: (id: string) => void;
+    changeFilter: (value: string) => void;
 
 }
 
 type InArray = {
-    id: number,
+    id: string,
     toDo: string,
     prioritet: string,
 }
 
 function Telegram(props: ITelegram) {
+    let [sendName, setSendName] = useState('');
+    let [names, setNames] = useState([
+        {id: v1(), name: 'Sasha Yudintsev'}
+    ])
+    let counter = 1;
+let sum=1;
+
+    function clickEnter(sendName: string) {
+        if (sendName.length >= 3) {
+            alert('Hi USER ' + sendName);
+            NamesFoo(sendName);
+        }
+        setSendName('')
+    }
+
+    function NamesFoo(sendName: string) {
+        let recordName = {id: v1(), name: sendName};
+        setNames([recordName, ...names]);
+        console.log(names.length+1)
+
+    }
+
+
     return (
         <div className={style.wrapper}>
             <div className={style.telega}>
@@ -31,19 +56,37 @@ function Telegram(props: ITelegram) {
                     <th>PRIORITET</th>
                 </table>
                 <table>
-                    {props.arQualities.map(m => <div key={m.id} className={m.id === 2 ? style.class1 : style.class2}>
-                        <tr>
-                            <td>{m.toDo}</td>
-                            <td>{m.prioritet}</td>
-                            <button onClick={()=>props.Delete(m.id)}>delete</button>
-                        </tr>
-                    </div>)}
+                    {props.arQualities.map(m =>
+                        <div key={m.id}
+                             className={m.id === '2' ? style.class1 : style.class2}> {/*//не работает из-за uuid*/}
+                            <tr>
+                                <td>{m.toDo}</td>
+                                <td>{m.prioritet}</td>
+                                <button onClick={() => props.Delete(m.id)}>delete</button>
+                            </tr>
+                        </div>)}
                 </table>
                 <p></p>
-                <button onClick={()=>props.changeFilter('All')}>All</button>
-                <button onClick={()=>props.changeFilter('HightPrioritet')}>Hight prioritet</button>
-                <button onClick={()=>props.changeFilter('MiddlePrioritet')}>Middle prioritet</button>
-                <button onClick={()=>props.changeFilter('LowPrioritet')}>Low prioritet</button>
+                <button onClick={() => props.changeFilter('All')}>All</button>
+                <button onClick={() => props.changeFilter('HightPrioritet')}>Hight prioritet</button>
+                <button onClick={() => props.changeFilter('MiddlePrioritet')}>Middle prioritet</button>
+                <button onClick={() => props.changeFilter('LowPrioritet')}>Low prioritet</button>
+                <p></p>
+                <input type="text" value={sendName} onChange={(event) => setSendName(event.currentTarget.value)}
+                       onKeyPress={(event) => {
+                           if (event.charCode === 13) {
+                               clickEnter(sendName)
+                           }
+                       }}/>
+                <button onClick={() => {
+                    clickEnter(sendName)
+                }}>send
+                </button>
+                <p></p>
+
+                <span>
+                  <h1>names count:  {names.length}</h1>
+                </span>
             </div>
         </div>
 
@@ -51,37 +94,3 @@ function Telegram(props: ITelegram) {
 }
 
 export default Telegram
-
-//==================================================================================================================
-// import React from 'react';
-// import style from './TelegramStyles.module.css';
-//
-//
-// type ITelegram = {
-//     name: string,
-//     surName: string,
-//     arQualities: Array<InArray>
-// }
-//
-// type InArray = {
-//     id: number,
-//     toDo: string,
-//     prioritet:string,
-// }
-//
-// function Telegram(props: ITelegram) {
-//     return (
-//         <div className={style.wrapper}>
-//             <div className={style.telega}>
-//                 <p></p>
-//                 <div>{props.name}</div>
-//                 <div>{props.surName}</div>
-//                 <hr/>
-//                 {props.arQualities.map(m => <div key={m.id} className={m.id === 2 ? style.class1 : style.class2}>
-//                     {m.toDo} - {m.prioritet}</div>)}
-//             </div>
-//         </div>
-//
-//     )
-// }
-// export default Telegram
