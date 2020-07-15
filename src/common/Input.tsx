@@ -1,18 +1,28 @@
-/*мертвая страница*/
-import React, {useState} from 'react';
+import React, {useState, ChangeEvent, KeyboardEvent} from "react";
 import './Input.styles.css'
+import {Button} from "../common/Button";
 
-type clickEnterType = {
-    clickEnter: (sendName: string) => void;
-    sendName: string;
-    setSendName: (sendName: string) => void
+type InputPropsType = {
+    sendName: string
+    setSendName: (value: string) => void
+    clickEnter: (value: string) => void
 }
 
-export let Input = (props: clickEnterType) => {
+export const Input = (props: InputPropsType) => {
     let [error, setError] = useState<string | null>(null);
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setError('');
+        props.setSendName(event.currentTarget.value)
+    };
+
+    const onKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.charCode === 13) {
+            props.clickEnter(props.sendName);
+            onAddTaskClick();
+        }
+    };
 
     function onAddTaskClick() {
-        console.log('kkkkkkkkkkkkkkkkkk')
         if (props.sendName.trim() !== '') {
             props.clickEnter(props.sendName);
             setError('')
@@ -24,45 +34,12 @@ export let Input = (props: clickEnterType) => {
     return (
         <div>
             <input className={props.sendName ? 'universal' : 'error'} type="text" value={props.sendName}
-                   onChange={(event) => props.setSendName(event.currentTarget.value)}
-                   onKeyPress={(event) => {
-                       if (event.charCode === 13) {
-                           props.clickEnter(props.sendName)
-                       }
-                   }}/>
+                   onChange={onChange}
+                   onKeyPress={onKeyPress}
+            />
 
-
-            {/*<button className={'universal'} onClick={onAddTaskClick}>send</button>*/}
-
+            <Button title={'SEND'} callback={() => {onAddTaskClick()}}/>
             {<div className="error-message">{error}</div>}
         </div>
     )
 }
-
-//=================================================
-// import React, {useState} from 'react';
-// import './Input.styles.css'
-//
-// type clickEnterType = {
-//     clickEnter: (sendName: string) => void;
-//     sendName: string;
-//     setSendName: (sendName: string) => void
-// }
-//
-// type sendNameType = {
-//     id: string,
-//     name: string
-// }
-// export let Input = (props: clickEnterType) => {
-//     return (
-//         <div>
-//             <input className={'universal'} type="text" value={props.sendName} onChange={(event) => props.setSendName(event.currentTarget.value)}
-//                    onKeyPress={(event) => {
-//                        if (event.charCode === 13) {
-//                            props.clickEnter(props.sendName)
-//                        }
-//                    }}/>
-//             <button className={'universal'} onClick={() => {props.clickEnter(props.sendName)}}>send</button>
-//         </div>
-//     )
-// }
