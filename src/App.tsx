@@ -15,8 +15,8 @@ function App() {
     )
 
     function Delete(id: string) {
-        arQualities = arQualities.filter(f => f.id !== id)
-        setarQualities(arQualities)
+        let newArQualities = arQualities.filter(f => f.id !== id)
+        setarQualities(newArQualities)
     }
 
 

@@ -1,3 +1,4 @@
+/*мертвая страница*/
 import React, {useState} from 'react';
 import './Input.styles.css'
 
@@ -29,8 +30,10 @@ export let Input = (props: clickEnterType) => {
                            props.clickEnter(props.sendName)
                        }
                    }}/>
-            {/*<button className={'universal'} onClick={() => {props.clickEnter(props.sendName)}}>send</button>*/}
-            <button className={'universal'} onClick={onAddTaskClick}>send</button>
+
+
+            {/*<button className={'universal'} onClick={onAddTaskClick}>send</button>*/}
+
             {<div className="error-message">{error}</div>}
         </div>
     )

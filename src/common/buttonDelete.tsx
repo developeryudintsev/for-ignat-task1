@@ -1,3 +1,4 @@
+/*мертвая страница*/
 import React, {useState} from 'react';
 import './button.styles.css'
 
