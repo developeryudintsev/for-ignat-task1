@@ -1,0 +1,62 @@
+.Menu {
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    padding: 10px 37px;
+}
+
+.Monday{
+    position: fixed;
+    left: 5px;
+    top: 45px;
+    padding: 10px 30px;
+  }
+
+.Tuesday {
+    position: fixed;
+    left: 5px;
+    top: 85px;
+    padding: 10px 29px;
+}
+
+
+.MondayACtive{
+    background-color:lightskyblue;
+    position: fixed;
+    left: 5px;
+    top: 45px;
+    padding: 10px 30px;
+}
+
+.TuesdayActive{
+    background-color:lightskyblue;
+    position: fixed;
+    left: 5px;
+    top: 85px;
+    padding: 10px 29px;
+}
+
+
+
+
+/*.Menu {*/
+/*    position: fixed;*/
+/*    left: 5px;*/
+/*    top: 5px;*/
+/*    padding: 10px 37px;*/
+/*}*/
+
+/*.Monday {*/
+/*    position: fixed;*/
+/*    left: 5px;*/
+/*    top: 45px;*/
+/*    padding: 10px 30px;*/
+/*}*/
+
+/*.Tuesday {*/
+/*    position: fixed;*/
+/*    left: 5px;*/
+/*    top: 85px;*/
+/*    padding: 10px 29px;*/
+/*}*/
+
