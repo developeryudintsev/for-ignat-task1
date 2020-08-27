@@ -3,7 +3,7 @@ import style from './TelegramStyles.module.css';
 import {v1} from "uuid";
 import {Button} from "../common/Button";
 import {Input} from "../common/Input";
-import {Menu} from "../common/Menu";
+import {restoreState, saveState} from "../common/Storage";
 
 type ITelegram = {
     name: string,
@@ -21,11 +21,11 @@ type InArray = {
 export function Telegram(props: ITelegram) {
     let [sendName, setSendName] = useState('');
     let [names, setNames] = useState([
-        {id: v1(), name: 'Sasha Yudintsev'}
+        {id: 0, name: 'Sasha Yudintsev'}
     ])
-    console.log(names)
-    let counter = 1;
-    let sum = 1;
+    let counter = 0;
+
+    // let sum = 1;
 
     function clickEnter(sendName: string) {
         if (sendName.length >= 3) {
@@ -36,14 +36,17 @@ export function Telegram(props: ITelegram) {
     }
 
     function NamesFoo(sendName: string) {
-        let recordName = {id: v1(), name: sendName};
+        // counter++
+        let recordName = {id: counter, name: sendName};
+        saveState(recordName);
+        restoreState();
         setNames([recordName, ...names]);
-        console.log(names.length + 1)
+
     }
 
     return (
         <div>
-                <div className={style.wrapper}>
+            <div className={style.wrapper}>
                 <div className={style.telega}>
                     <p></p>
                     <div>{props.name}</div>
@@ -87,3 +90,5 @@ export function Telegram(props: ITelegram) {
 
 export default Telegram
 
+//=====================================================================
+//
