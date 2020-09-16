@@ -6,6 +6,8 @@ import {BrowserRouter, HashRouter, Route} from "react-router-dom";
 import {Menu} from "./common/Menu";
 import {TodoList} from "./task2/TodoList";
 import {InputTodolist} from "./common/InputTodolist";
+import {Select} from "./common/Select";
+import {Radio} from "./common/Radio";
 
 type todolistsType = {
     id: string
@@ -28,12 +30,10 @@ function App() {
             {id: v1(), toDo: 'HTMl', prioritet: 'low'},
         ]
     )
-
     function Delete(id: string) {
         let newArQualities = arQualities.filter(f => f.id !== id)
         setarQualities(newArQualities)
     }
-
     let [filtered, setFiltered] = useState('All')
     let filteredarQualities = arQualities;
     if (filtered === 'HightPrioritet') {
@@ -45,19 +45,15 @@ function App() {
     if (filtered === 'LowPrioritet') {
         filteredarQualities = arQualities.filter(f => f.prioritet === 'low');
     }
-
     function changeFilter(value: string) {
         setFiltered(value)
     }
-
     let [opacity, setOpacity] = useState<boolean>(false)
-
     function MenuFoo(opacityValue: boolean) {
         setOpacity(opacityValue)
     }
 
     //for TODOLIST------------------------------------------------------
-
     let [todolists, setTodolists] = useState<Array<todolistsType>>([
         {
             id: Todolist1,
@@ -70,7 +66,6 @@ function App() {
             filter: 'All'
         },
     ])
-
     let [Tasks, setTasks] = useState(
         {
             [Todolist1]: [
@@ -84,7 +79,6 @@ function App() {
                 {id: v1(), title: 'React', isDone: false}
             ]
         });
-
     const addTodolist = (title: string) => {
         let newTodolistId = v1();
         let newTodolist: todolistsType = {id: newTodolistId, title: title, filter: 'All'};
@@ -137,6 +131,21 @@ function App() {
             setTasks({...Tasks})
         }
     }
+    //for TODOLIST------------selectComponent
+    let arraySkills = [
+        {
+            value: 1,
+            skills: 'Junior'
+        },
+        {
+            value: 2,
+            skills: 'Middle'
+        },
+        {
+            value: 3,
+            skills: 'Senior'
+        }
+    ];
     return (
         <div>
             <div className="App">
@@ -151,9 +160,12 @@ function App() {
                     />}/>
 
                     <Route path={'/tuesday'} render={() => {
+
                         return (
                             <div className={'lineTodolist'}>
                                 <div className={'InputTodolistStyle'}><InputTodolist callBack={addTodolist}/></div>
+                               <div className={'SelectStyles'}> <Select arraySkills={arraySkills}/></div>
+                                <div className={'RadioStyles'}><Radio arraySkills={arraySkills}/></div>
                                 {todolists.map(m => {
                                     let tasksLayer = Tasks[m.id];
                                     if (m.filter === 'Active') {
