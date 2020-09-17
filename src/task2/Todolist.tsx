@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import styles from './TodoList.module.css'
 import {Button} from './../common/Button'
-
 import {InputTodolist} from "../common/InputTodolist";
 import {CheckBox} from "../common/CheckBox";
 import {EditableSpan} from "../common/EditableSpan";
+
 
 type titleType = {
     id: string
@@ -30,7 +30,6 @@ export const TodoList = (props: titleType) => {
     const addTaskHandler = (title: string) => {
         props.addTask(title, props.id)
     }
-
     let saveNewTitleTodolistHandler = (title: string) => {
         props.saveNewTitleTodolist(title, props.id)
     }
@@ -43,19 +42,18 @@ export const TodoList = (props: titleType) => {
             </div>
             <ul>
                 {
-                    props.Tasks.map(m =>
-                    {
-                        const saveNewTitleHandler = (title: string) => {
-                            props.saveNewTitle(title, props.id, m.id)
+                    props.Tasks.map(m => {
+                            const saveNewTitleHandler = (title: string) => {
+                                props.saveNewTitle(title, props.id, m.id)
+                            }
+                            return (
+                                <li key={m.id}>
+                                    <Button callback={() => props.removeTask(m.id, props.id)} title={'X'}/>
+                                    <CheckBox callBack={() => props.changeStatus(m.id, props.id)} isDone={m.isDone}/>
+                                    <EditableSpan callBack={saveNewTitleHandler} title={m.title}/>
+                                </li>
+                            )
                         }
-                        return(
-                            <li key={m.id}>
-                                <Button callback={() => props.removeTask(m.id, props.id)} title={'X'}/>
-                                <CheckBox callBack={() => props.changeStatus(m.id, props.id)} isDone={m.isDone}/>
-                                <EditableSpan callBack={saveNewTitleHandler} title={m.title}/>
-                            </li>
-                        )
-                    }
                     )}
             </ul>
             <div>
@@ -71,7 +69,6 @@ export const TodoList = (props: titleType) => {
 }
 
 //======================================================================
-
 // import React, {useState} from 'react';
 // import styles from './TodoList.module.css'
 // import {Button} from './../common/Button'
@@ -90,6 +87,7 @@ export const TodoList = (props: titleType) => {
 //     changeFilterTodolist: (filterValue: string, todolistsId: string) => void
 //     changeStatus: (CheckBoxId: string, todolistsID: string) => void
 //     RemoveTodolist: (todolistsID: string) => void;
+//     saveNewTitle: (title: string, todolistsID: string, TasksID: string) => void
 //     saveNewTitleTodolist: (title: string, todolistsID: string) => void
 // }
 //
@@ -117,12 +115,19 @@ export const TodoList = (props: titleType) => {
 //             <ul>
 //                 {
 //                     props.Tasks.map(m =>
-//                         <li key={m.id}>
-//                             <Button callback={() => props.removeTask(m.id, props.id)} title={'X'}/>
-//                             <CheckBox callBack={() => props.changeStatus(m.id, props.id)} isDone={m.isDone}/>
-//                             <span>{m.title}</span></li>
-//                     )
-//                 }
+//                         {
+//                             const saveNewTitleHandler = (title: string) => {
+//                                 props.saveNewTitle(title, props.id, m.id)
+//                             }
+//                             return(
+//                                 <li key={m.id}>
+//                                     <Button callback={() => props.removeTask(m.id, props.id)} title={'X'}/>
+//                                     <CheckBox callBack={() => props.changeStatus(m.id, props.id)} isDone={m.isDone}/>
+//                                     <EditableSpan callBack={saveNewTitleHandler} title={m.title}/>
+//                                 </li>
+//                             )
+//                         }
+//                     )}
 //             </ul>
 //             <div>
 //                 <Button callback={() => props.changeFilterTodolist('All', props.id)} title={'All'}
