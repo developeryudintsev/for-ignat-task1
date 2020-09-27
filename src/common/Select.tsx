@@ -19,37 +19,3 @@ export const Select = (props:SelectType) => {
         </select>
     )
 }
-
-//============================================
-// import React, {ChangeEvent, useState} from "react";
-//
-// type SelectType = {}
-//
-// export const Select = () => {
-//     let arraySkills = [
-//         {
-//             value: 1,
-//             skills: 'Junior'
-//         },
-//         {
-//             value: 2,
-//             skills: 'Middle'
-//         },
-//         {
-//             value: 3,
-//             skills: 'Senior'
-//         }
-//     ];
-//     let [Skill,SetSkill]=useState<string|undefined>('1');
-//     const onChangeHandler=(event:ChangeEvent<HTMLSelectElement>)=>{
-//         SetSkill(event.currentTarget.value)
-//     }
-//     return (
-//         <select value={Skill} onChange={onChangeHandler}>
-//             <option>none</option>
-//             {
-//                 arraySkills.map(m => <option value={m.value}>{m.skills}</option>)
-//             }
-//         </select>
-//     )
-// }

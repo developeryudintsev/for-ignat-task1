@@ -10,15 +10,17 @@ export const Radio = (props: RadioType) => {
         SetSkill(event.currentTarget.value)
     }
     return (
-        <form action="/action_page.php">
+        <div>
             <p>Please select your SKILL:</p>
             {props.arraySkills.map(m =>
                 <p>
-                    <input type="radio" name="gender" value={Skill} onChange={onChangeHandler}/>
-                    <label>{m.skills}</label>
+                    <label>
+                        <input type="radio" name="gender" value={Skill} onChange={onChangeHandler}/>
+                        {m.skills}
+                    </label>
                 </p>
             )}
-        </form>
+        </div>
     )
 }
 

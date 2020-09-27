@@ -8,6 +8,8 @@ import {TodoList} from "./task2/TodoList";
 import {InputTodolist} from "./common/InputTodolist";
 import {Select} from "./common/Select";
 import {Radio} from "./common/Radio";
+import {ACType, StateType} from "./common/tests/homeWorkReducer";
+import {ArrayState} from "./task2/ArrayState";
 
 type todolistsType = {
     id: string
@@ -30,10 +32,12 @@ function App() {
             {id: v1(), toDo: 'HTMl', prioritet: 'low'},
         ]
     )
+
     function Delete(id: string) {
         let newArQualities = arQualities.filter(f => f.id !== id)
         setarQualities(newArQualities)
     }
+
     let [filtered, setFiltered] = useState('All')
     let filteredarQualities = arQualities;
     if (filtered === 'HightPrioritet') {
@@ -45,10 +49,13 @@ function App() {
     if (filtered === 'LowPrioritet') {
         filteredarQualities = arQualities.filter(f => f.prioritet === 'low');
     }
+
     function changeFilter(value: string) {
         setFiltered(value)
     }
+
     let [opacity, setOpacity] = useState<boolean>(false)
+
     function MenuFoo(opacityValue: boolean) {
         setOpacity(opacityValue)
     }
@@ -146,6 +153,17 @@ function App() {
             skills: 'Senior'
         }
     ];
+    //for STATEreducer
+    const startState: Array<StateType> = [
+        {id: v1(), name: "Igor", age: 41},
+        {id: v1(), name: "Olga", age: 39},
+        {id: v1(), name: "Sasha", age: 11},
+        {id: v1(), name: "Nadka", age: 4},
+    ]
+    let SortUpValueForAction = {type: 'SORT', payload: 'up'};
+    let SortDownValueForAction = {type: 'RSORT', payload: 'up'};
+    const SortAGEAC ={type: 'AGESORT', payload: 18}
+
     return (
         <div>
             <div className="App">
@@ -164,8 +182,14 @@ function App() {
                         return (
                             <div className={'lineTodolist'}>
                                 <div className={'InputTodolistStyle'}><InputTodolist callBack={addTodolist}/></div>
-                               <div className={'SelectStyles'}> <Select arraySkills={arraySkills}/></div>
+                                <div className={'SelectStyles'}><Select arraySkills={arraySkills}/></div>
                                 <div className={'RadioStyles'}><Radio arraySkills={arraySkills}/></div>
+                                <div className={'ArrayState'}><ArrayState
+                                    state={startState}
+                                    SortUpValueForAction={SortUpValueForAction}
+                                    SortDownValueForAction={SortDownValueForAction}
+                                    SortAGEAC={SortAGEAC}
+                                /></div>
                                 {todolists.map(m => {
                                     let tasksLayer = Tasks[m.id];
                                     if (m.filter === 'Active') {
@@ -193,7 +217,6 @@ function App() {
                             </div>
                         )
                     }
-
                     }>
                     </Route>
                 </BrowserRouter>
@@ -203,5 +226,3 @@ function App() {
 }
 
 export default App
-
-
