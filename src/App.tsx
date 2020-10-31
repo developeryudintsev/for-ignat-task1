@@ -10,6 +10,8 @@ import {Select} from "./common/Select";
 import {Radio} from "./common/Radio";
 import {ACType, StateType} from "./common/tests/homeWorkReducer";
 import {ArrayState} from "./task2/ArrayState";
+import {Timer} from "./task2/Timer";
+import styles from "./task2/TodoList.module.css";
 
 type todolistsType = {
     id: string
@@ -178,7 +180,6 @@ function App() {
                     />}/>
 
                     <Route path={'/tuesday'} render={() => {
-
                         return (
                             <div className={'lineTodolist'}>
                                 <div className={'InputTodolistStyle'}><InputTodolist callBack={addTodolist}/></div>
@@ -190,6 +191,7 @@ function App() {
                                     SortDownValueForAction={SortDownValueForAction}
                                     SortAGEAC={SortAGEAC}
                                 /></div>
+                                <div className={'timerModule'}><Timer/></div>
                                 {todolists.map(m => {
                                     let tasksLayer = Tasks[m.id];
                                     if (m.filter === 'Active') {

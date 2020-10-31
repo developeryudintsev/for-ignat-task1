@@ -5,7 +5,7 @@ export type StateType = {
 }
 export type ACType = {
     type: string,
-    payload: string|number
+    payload: string | number
 }
 
 export const SortUpAC = (SortUpValue: ACType): ACType => {
@@ -22,7 +22,7 @@ export const hwReducer = (state: Array<StateType>, action: ACType) => {
     debugger
     switch (action.type) {
         case 'SORT':
-            return [...state.sort((a, b) => {
+            state.sort((a, b) => {
                     switch (a.name > b.name) {
                         case true:
                             return 1
@@ -32,10 +32,12 @@ export const hwReducer = (state: Array<StateType>, action: ACType) => {
                             return 0
                     }
                 }
-            )];
+            );
+            return [...state];
+
         case 'RSORT':
             return [...state.sort((a, b) => {
-                    switch (a.name >b.name) {
+                    switch (a.name > b.name) {
                         case true:
                             return -1
                         case false:
@@ -46,9 +48,8 @@ export const hwReducer = (state: Array<StateType>, action: ACType) => {
                 }
             )]
         case 'AGESORT':
-            return  [... state.filter(f=>f.age>action.payload)]
+            return [...state.filter(f => f.age > action.payload)]
         default:
             throw new Error('I dont know this comand');
     }
 };
-

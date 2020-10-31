@@ -3,7 +3,7 @@ import styles from './Button.module.css'
 
 type ButtonPropsType = {
     title: string
-    callback: () => void
+    callback?: () => void
     Filter?:string
 }
 

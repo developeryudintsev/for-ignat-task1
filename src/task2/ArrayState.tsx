@@ -1,4 +1,4 @@
-import React, {MouseEvent, useState} from 'react';
+import React, { useState} from 'react';
 import {ACType, hwReducer, RSortUpAC, SortAGEAC, SortUpAC, StateType} from '../common/tests/homeWorkReducer';
 import './../App.css';
 import {Button} from "../common/Button";

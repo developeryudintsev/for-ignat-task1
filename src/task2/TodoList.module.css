@@ -4,3 +4,21 @@
     bottom: 15px;
     margin-bottom: 50px;
 }
+
+.border{
+    width: 230px;
+    height: 150px;
+    border-radius: 15px;
+    border: orangered solid 2px;
+    background-color: yellow;
+}
+
+.timer{
+    padding-top: 5px;
+    text-align: center;
+}
+
+.buttons{
+    padding-top: 20px;
+    margin-left: 35px;
+}

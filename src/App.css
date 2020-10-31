@@ -1,64 +1,71 @@
-.App{
+.App {
     min-width: 98vw;
     width: max-content;
     min-height: 120vh;
     height: max-content;
 }
 
-.InputTodolistStyle{
+.InputTodolistStyle {
     margin-left: 150px;
     margin-top: 5px;
     margin-bottom: 50px;
 }
-.lineTodolist{
+
+.lineTodolist {
     display: flex;
 }
 
-.SelectStyles{
+.SelectStyles {
     position: absolute;
     left: 150px;
-    top:100px
+    top: 100px
 }
 
-.RadioStyles{
-    border:solid black 2px;
+.RadioStyles {
+    border: solid black 2px;
     padding: 10px;
     background-color: yellow;
     position: absolute;
     left: 150px;
-    top:150px
+    top: 150px
 }
 
-.ArrayState{
+.ArrayState {
     height: 200px;
     width: 230px;
     border: black solid 2px;
     border-radius: 15px;
     position: absolute;
     left: 150px;
-    top:400px;
+    top: 400px;
     background-color: white;
 }
 
-.th1{
+.th1 {
     position: relative;
-    top:00px;
+    top: 00px;
     left: -80px;
 }
 
 
-.th2{
+.th2 {
     position: relative;
-    top:00px;
+    top: 00px;
     left: -86px;
 }
 
-.buttons{
+.buttons {
     margin-left: 20px;
     margin-top: 20px;
 }
 
-td{
+td {
     position: relative;
     left: -30px;
+}
+
+.timerModule {
+    position: absolute;
+    margin-top: 650px;
+    left: 150px;
 }
