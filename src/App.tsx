@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import Telegram from "./task1/Telegram";
 import {v1} from "uuid";
@@ -12,6 +12,9 @@ import {ACType, StateType} from "./common/tests/homeWorkReducer";
 import {ArrayState} from "./task2/ArrayState";
 import {Timer} from "./task2/Timer";
 import styles from "./task2/TodoList.module.css";
+import {Preloader} from "./common/Preloader/Preloader";
+import {Button} from "./common/Button";
+import {LoadingAC, PreloaderReducer} from "./common/Preloader/PreloaderReducer";
 
 type todolistsType = {
     id: string
@@ -21,8 +24,25 @@ type todolistsType = {
 const Todolist1 = v1();
 const Todolist2 = v1();
 
+export type loadingType = boolean;
 
 function App() {
+    //for Preloader----------------------------------------------------
+    let [show,setShow]=useState(false)
+    let [loading, setDispatchLoading] = useReducer(PreloaderReducer, false);//по умолчанию не прказывает прелодер
+    const setPreloader = () => {
+        setShow(true)
+        setDispatchLoading(LoadingAC(true))//показывай прелодер
+        setTimeout(() => {
+            setDispatchLoading(LoadingAC(false))//не показывай прелодер черех 3 сек.
+        }, 3000);
+    }
+
+    // let [loading, setLoading] = useState(false);
+    // const setPreloader = () => {
+    //     setLoading(true);
+    //     setTimeout(() => setLoading(false), 3000);
+    // }
 
     //for TELEGRAM------------------------------------------------------
     let [arQualities, setarQualities] = useState(
@@ -164,7 +184,7 @@ function App() {
     ]
     let SortUpValueForAction = {type: 'SORT', payload: 'up'};
     let SortDownValueForAction = {type: 'RSORT', payload: 'up'};
-    const SortAGEAC ={type: 'AGESORT', payload: 18}
+    const SortAGEAC = {type: 'AGESORT', payload: 18}
 
     return (
         <div>
@@ -181,41 +201,50 @@ function App() {
 
                     <Route path={'/tuesday'} render={() => {
                         return (
-                            <div className={'lineTodolist'}>
-                                <div className={'InputTodolistStyle'}><InputTodolist callBack={addTodolist}/></div>
-                                <div className={'SelectStyles'}><Select arraySkills={arraySkills}/></div>
-                                <div className={'RadioStyles'}><Radio arraySkills={arraySkills}/></div>
-                                <div className={'ArrayState'}><ArrayState
-                                    state={startState}
-                                    SortUpValueForAction={SortUpValueForAction}
-                                    SortDownValueForAction={SortDownValueForAction}
-                                    SortAGEAC={SortAGEAC}
-                                /></div>
-                                <div className={'timerModule'}><Timer/></div>
-                                {todolists.map(m => {
-                                    let tasksLayer = Tasks[m.id];
-                                    if (m.filter === 'Active') {
-                                        tasksLayer = Tasks[m.id].filter(f => f.isDone === false)
-                                    }
-                                    if (m.filter === 'Completed') {
-                                        tasksLayer = Tasks[m.id].filter(f => f.isDone === true)
-                                    }
-                                    return (
-                                        <TodoList
-                                            id={m.id}
-                                            title={m.title}
-                                            Tasks={tasksLayer}
-                                            RemoveTodolist={RemoveTodolist}
-                                            filter={m.filter}
-                                            addTask={addTask}
-                                            removeTask={removeTask}
-                                            changeFilterTodolist={changeFilterTodolist}
-                                            changeStatus={changeStatus}
-                                            saveNewTitleTodolist={saveNewTitleTodolist}
-                                            saveNewTitle={saveNewTitle}
-                                        />
-                                    )
-                                })}
+                            <div className={'general'}>
+                                <div className={'setPreloader'}>
+                                    <Button title={'setPreloader'} callback={() => setPreloader()}/>
+                                </div>
+                                {loading && <Preloader/>}
+                                {!loading && show &&<div className={'lineTodolist'}>
+                                    <div className={'InputTodolistStyle'}><InputTodolist callBack={addTodolist}/></div>
+
+                                    {todolists.map(m => {
+                                        let tasksLayer = Tasks[m.id];
+                                        if (m.filter === 'Active') {
+                                            tasksLayer = Tasks[m.id].filter(f => f.isDone === false)
+                                        }
+                                        if (m.filter === 'Completed') {
+                                            tasksLayer = Tasks[m.id].filter(f => f.isDone === true)
+                                        }
+                                        return (
+                                            <TodoList
+                                                id={m.id}
+                                                title={m.title}
+                                                Tasks={tasksLayer}
+                                                RemoveTodolist={RemoveTodolist}
+                                                filter={m.filter}
+                                                addTask={addTask}
+                                                removeTask={removeTask}
+                                                changeFilterTodolist={changeFilterTodolist}
+                                                changeStatus={changeStatus}
+                                                saveNewTitleTodolist={saveNewTitleTodolist}
+                                                saveNewTitle={saveNewTitle}
+                                            />
+                                        )
+                                    })}
+                                </div>}
+                                {!loading&& show &&<div className={'leftSide'}>
+                                    <div className={'SelectStyles'}><Select arraySkills={arraySkills}/></div>
+                                    <div className={'RadioStyles'}><Radio arraySkills={arraySkills}/></div>
+                                    <div className={'ArrayState'}><ArrayState
+                                        state={startState}
+                                        SortUpValueForAction={SortUpValueForAction}
+                                        SortDownValueForAction={SortDownValueForAction}
+                                        SortAGEAC={SortAGEAC}
+                                    /></div>
+                                    <div className={'timerModule'}><Timer/></div>
+                                </div>}
                             </div>
                         )
                     }

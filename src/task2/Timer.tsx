@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './../task2/TodoList.module.css'
 import {Button} from "../common/Button";
 
-
 export const Timer = () => {
-    let [opasityus, setOpasityus] = useState(0)
+    let [opasityus, setOpasityus] = useState(0);
+
     let [timerID, setTimerID] = useState<any>(new Date())
     let [intervalValue, setIntervalValue] = useState<any>(null)
 
@@ -21,12 +21,10 @@ export const Timer = () => {
         console.log('mouse enter');
         setOpasityus(1)
     }
-
     const mouseLeave = () => {
         console.log('mouse leave');
         setOpasityus(0)
     }
-
     const dateStyle = {
         margin: '80px',
         width: '150px',
@@ -37,8 +35,7 @@ export const Timer = () => {
 
     return (
         <div className={styles.border}>
-            <span
-                style={dateStyle}>{new Date().getDate()}:{new Date().getUTCMonth() + 1}:{new Date().getFullYear()}</span>
+            <span style={dateStyle}>{new Date().getDate()}:{new Date().getUTCMonth()+1}:{new Date().getFullYear()}</span>
             <div className={styles.timer} onMouseEnter={mouseEnter}
                  onMouseLeave={mouseLeave}>{timerID.toLocaleTimeString()}</div>
             <div className={styles.buttons}>
@@ -48,36 +45,3 @@ export const Timer = () => {
         </div>
     )
 }
-
-//=================================================================================
-// import React, {useEffect, useState} from 'react';
-// import styles from './../task2/TodoList.module.css'
-// import {Button} from "../common/Button";
-//
-// export const Timer = () => {
-//     let setIntervalValue=null;
-//     let [timerID, setTimerID] = useState<any>(new Date())
-//
-//
-//     let setIntervalFoo = ():any=>{
-//         setIntervalValue=  setInterval(() => setTimerID(new Date()), 1000);
-//     }
-//     const clearIntervalFoo =():any=>{
-//         clearInterval(timerID);
-//     }
-//
-//     return (
-//         <div className={styles.border}>
-//             <div className={styles.timer}>{timerID.toLocaleTimeString()}</div>
-//
-//             <div className={styles.buttons}>
-//                 {/*<button onClick={() => setIntervalFoo}>start time</button>*/}
-//                 {/*<button onClick={() => clearIntervalFoo}>stop time</button>*/}
-//                 <Button title={'start time'} callback={setIntervalFoo}/>
-//                 <Button title={'stop time'} callback={clearIntervalFoo}/>
-//             </div>
-//         </div>
-//     )
-// }
-
-//================================================================

@@ -15,19 +15,20 @@
     display: flex;
 }
 
+.leftSide {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
 .SelectStyles {
-    position: absolute;
-    left: 150px;
-    top: 100px
 }
 
 .RadioStyles {
     border: solid black 2px;
     padding: 10px;
     background-color: yellow;
-    position: absolute;
-    left: 150px;
-    top: 150px
+    width: 200px;
 }
 
 .ArrayState {
@@ -35,9 +36,6 @@
     width: 230px;
     border: black solid 2px;
     border-radius: 15px;
-    position: absolute;
-    left: 150px;
-    top: 400px;
     background-color: white;
 }
 
@@ -64,8 +62,9 @@ td {
     left: -30px;
 }
 
-.timerModule {
-    position: absolute;
-    margin-top: 650px;
-    left: 150px;
+.timerModule {}
+.setPreloader{
+    text-align: center;
+    background-color: lightblue;
+    margin-bottom: 20px;
 }
