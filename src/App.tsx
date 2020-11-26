@@ -15,6 +15,8 @@ import styles from "./task2/TodoList.module.css";
 import {Preloader} from "./common/Preloader/Preloader";
 import {Button} from "./common/Button";
 import {LoadingAC, PreloaderReducer} from "./common/Preloader/PreloaderReducer";
+import {Range} from "./common/Range/Range";
+import {RangeDouble} from "./common/RangeDouble/RangeDouble";
 
 type todolistsType = {
     id: string
@@ -28,7 +30,7 @@ export type loadingType = boolean;
 
 function App() {
     //for Preloader----------------------------------------------------
-    let [show,setShow]=useState(false)
+    let [show, setShow] = useState(false)
     let [loading, setDispatchLoading] = useReducer(PreloaderReducer, false);//по умолчанию не прказывает прелодер
     const setPreloader = () => {
         setShow(true)
@@ -37,12 +39,6 @@ function App() {
             setDispatchLoading(LoadingAC(false))//не показывай прелодер черех 3 сек.
         }, 3000);
     }
-
-    // let [loading, setLoading] = useState(false);
-    // const setPreloader = () => {
-    //     setLoading(true);
-    //     setTimeout(() => setLoading(false), 3000);
-    // }
 
     //for TELEGRAM------------------------------------------------------
     let [arQualities, setarQualities] = useState(
@@ -206,9 +202,8 @@ function App() {
                                     <Button title={'setPreloader'} callback={() => setPreloader()}/>
                                 </div>
                                 {loading && <Preloader/>}
-                                {!loading && show &&<div className={'lineTodolist'}>
+                                {!loading && show && <div className={'lineTodolist'}>
                                     <div className={'InputTodolistStyle'}><InputTodolist callBack={addTodolist}/></div>
-
                                     {todolists.map(m => {
                                         let tasksLayer = Tasks[m.id];
                                         if (m.filter === 'Active') {
@@ -234,7 +229,7 @@ function App() {
                                         )
                                     })}
                                 </div>}
-                                {!loading&& show &&<div className={'leftSide'}>
+                                {!loading && show && <div className={'leftSide'}>
                                     <div className={'SelectStyles'}><Select arraySkills={arraySkills}/></div>
                                     <div className={'RadioStyles'}><Radio arraySkills={arraySkills}/></div>
                                     <div className={'ArrayState'}><ArrayState
@@ -245,6 +240,8 @@ function App() {
                                     /></div>
                                     <div className={'timerModule'}><Timer/></div>
                                 </div>}
+                                <Range  min={200} max={300}/>
+                                <RangeDouble min={200} max={1000}/>
                             </div>
                         )
                     }
