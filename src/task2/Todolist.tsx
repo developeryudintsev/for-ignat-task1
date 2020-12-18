@@ -6,7 +6,7 @@ import {CheckBox} from "../common/CheckBox";
 import {EditableSpan} from "../common/EditableSpan";
 
 
-type titleType = {
+export type titleType = {
     id: string
     title: string
     filter: string
@@ -15,7 +15,7 @@ type titleType = {
     removeTask: (removeId: string, todolistsID: string) => void
     changeFilterTodolist: (filterValue: string, todolistsId: string) => void
     changeStatus: (CheckBoxId: string, todolistsID: string) => void
-    RemoveTodolist: (todolistsID: string) => void;
+    RemoveTodolist: (todolistsID: string) => void
     saveNewTitle: (title: string, todolistsID: string, TasksID: string) => void
     saveNewTitleTodolist: (title: string, todolistsID: string) => void
 }

@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from "react";
 
 type SelectType = {
     // arraySkills:{value: number, skills: string}[]
-    arraySkills:Array<{value: number, skills: string}>
+    arraySkills:Array<{id: number, skills: string, color?:string}>
 }
 
 export const Select = (props:SelectType) => {
@@ -14,7 +14,7 @@ export const Select = (props:SelectType) => {
         <select value={Skill} onChange={onChangeHandler}>
             <option>none</option>
             {
-               props.arraySkills.map(m => <option value={m.value}>{m.skills}</option>)
+               props.arraySkills.map(m => <option value={m.id}>{m.skills}</option>)
             }
         </select>
     )

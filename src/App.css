@@ -1,3 +1,15 @@
+.lightskyblue {
+    background-color: lightskyblue;
+}
+
+.deeppink {
+    background-color:deeppink;
+}
+
+.dimgray {
+    background-color: dimgray;
+}
+
 .App {
     min-width: 98vw;
     width: max-content;
@@ -28,6 +40,16 @@
     border: solid black 2px;
     padding: 10px;
     background-color: yellow;
+    width: 200px;
+}
+
+.RadioStylesForBackGround {
+    float: right;
+    margin-top: 10px;
+
+    border: solid black 1px;
+    padding-left: 10px;
+    background-color: dimgray;
     width: 200px;
 }
 
@@ -62,8 +84,10 @@ td {
     left: -30px;
 }
 
-.timerModule {}
-.setPreloader{
+.timerModule {
+}
+
+.setPreloader {
     text-align: center;
     background-color: lightblue;
     margin-bottom: 20px;
