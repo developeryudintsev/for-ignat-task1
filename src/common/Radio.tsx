@@ -15,15 +15,15 @@ export const Radio = (props: RadioType) => {
     }
     return (
         <div>
-            <p>{props.title}</p>
-            {props.arraySkills.map(m =>
+            <div><p>{props.title}</p></div>
+            <div>{props.arraySkills.map(m =>
                 <p>
                     <label>
                         <input type="radio" name="gender" value={m.id} onChange={onChangeHandler}/>
-                        {props.setColor?  m.color : m.skills}
+                        {props.setColor ? m.color : m.skills}
                     </label>
                 </p>
-            )}
+            )}</div>
         </div>
     )
 }

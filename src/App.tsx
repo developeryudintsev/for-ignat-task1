@@ -20,6 +20,7 @@ import {RangeDouble} from "./common/RangeDouble/RangeDouble";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store/store";
 import {setThemeAC} from "./reducers/ThemeReducer";
+import {CheckBoxApi} from "./common/CheckBoxApi/CheckBoxApi";
 
 export type todolistsType = {
     id: string
@@ -28,19 +29,6 @@ export type todolistsType = {
 }
 const Todolist1 = v1();
 const Todolist2 = v1();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export type loadingType = boolean;
 
@@ -288,6 +276,7 @@ function App() {
                                 </div>}
                                 <Range min={200} max={300}/>
                                 <RangeDouble min={200} max={1000}/>
+                                <CheckBoxApi/>
                             </div>
                         )
                     }
